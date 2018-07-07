@@ -30,7 +30,7 @@ public class CategoriaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Categoria categoria = new Categoria();
-                categoria.setDescripcion(txtNombre.getText().toString());
+                categoria.setNombre(txtNombre.getText().toString());
 
                 Log.i(LOG_TAG, categoria.toString());
 
