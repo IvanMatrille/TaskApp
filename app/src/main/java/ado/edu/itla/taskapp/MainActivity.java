@@ -19,13 +19,23 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btnCategoria = (Button)findViewById(R.id.btnCategoria);
+        Button btnVer = (Button)findViewById(R.id.btnVer);
+        Button btnAgregar = (Button)findViewById(R.id.btnAgregar);
 
-        btnCategoria.setOnClickListener(new View.OnClickListener() {
+        btnVer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
                 Intent intent = new Intent(MainActivity.this, CategoriaListaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(MainActivity.this, CategoriaActivity.class);
                 startActivity(intent);
             }
         });

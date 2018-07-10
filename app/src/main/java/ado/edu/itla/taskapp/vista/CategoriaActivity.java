@@ -15,6 +15,7 @@ public class CategoriaActivity extends AppCompatActivity {
 
         private static final String LOG_TAG = "CategoriaActivity";
         private CategoriaRepositorio categoriaRepositorio;
+        private Categoria categoria;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,18 +25,36 @@ public class CategoriaActivity extends AppCompatActivity {
         categoriaRepositorio = new CategoriaRepositorioDbImp(this);
 
         final TextView txtNombre = (TextView)findViewById(R.id.txtNombreCategoria);
+
         Button btnGuardar = (Button) findViewById(R.id.btnGuardar);
+
+        Log.i(LOG_TAG, categoria.toString());
+
+        Bundle paraBunble = getIntent().getExtras();
+        if (paraBunble != null && paraBunble.containsKey("categoria")) {
+            categoria = (Categoria)paraBunble.getSerializable("categoria");
+            txtNombre.setText(categoria.getNombre());
+            btnGuardar.setText("Actualizar");
+
+        }
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Categoria categoria = new Categoria();
+
+                if(categoria == null)
+                {
+                    categoria = new Categoria();
+                }
+
                 categoria.setNombre(txtNombre.getText().toString());
 
                 Log.i(LOG_TAG, categoria.toString());
 
                 categoriaRepositorio.guardar(categoria);
+
                 Log.i(LOG_TAG, categoria.toString());
+
 
                 //TODO: guarda la categoria en la base de datos.
                 //Todo: 1 - Si existe actualizarla, 2 - Sino agregarla
