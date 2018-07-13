@@ -13,7 +13,7 @@ public class Tarea {
     private Integer id;
     private String nombre;
     private String descripcion;
-    private  Date fecha;
+    private Date fecha;
     private Date fechaterminado;
     private tareaestado estado;
     private Categoria categoria;
