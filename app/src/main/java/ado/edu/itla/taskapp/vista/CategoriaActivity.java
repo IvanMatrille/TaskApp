@@ -35,7 +35,6 @@ public class CategoriaActivity extends AppCompatActivity {
             categoria = (Categoria)paraBunble.getSerializable("categoria");
             txtNombre.setText(categoria.getNombre());
             btnGuardar.setText("Actualizar");
-
         }
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {

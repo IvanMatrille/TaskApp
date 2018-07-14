@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/et_usuario"
         android:layout_width="302dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -40,10 +40,10 @@
         android:text="Contraseña"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+        app:layout_constraintTop_toBottomOf="@+id/et_usuario" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/ed_contrasena"
         android:layout_width="305dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -55,23 +55,26 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/tbn_inicio"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="88dp"
         android:text="Inicio"
-        app:layout_constraintTop_toBottomOf="@+id/editText6"
-        tools:layout_editor_absoluteX="193dp" />
+        app:layout_constraintStart_toEndOf="@+id/tv_registrarse"
+        app:layout_constraintTop_toBottomOf="@+id/ed_contrasena" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tv_registrarse"
         android:layout_width="107dp"
         android:layout_height="31dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="92dp"
         android:text="Registrarse"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText6" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_contrasena" />
 </android.support.constraint.ConstraintLayout>

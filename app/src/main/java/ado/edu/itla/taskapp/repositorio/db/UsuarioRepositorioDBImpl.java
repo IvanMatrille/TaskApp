@@ -21,32 +21,34 @@ public class UsuarioRepositorioDBImpl implements UsuarioRepositorio {
 
     @Override
     public boolean guardar(Usuario usuario) {
+
         if (usuario.getId() != null && usuario.getId() > 0)
         {
             return actualizar(usuario);
         }
 
-        ContentValues cv = new ContentValues();
+            ContentValues cv = new ContentValues();
 
-        cv.put(CAMPO_NOMBRE, usuario.getNombre());
-        cv.put(CAMPO_EMAIL, usuario.getEmail());
-        cv.put(CAMPO_CONTRASENA, usuario.getContrasena());
-        cv.put(CAMPO_TIPOUSUARIO, usuario.getTipoUsuario().toString());
+            cv.put(CAMPO_NOMBRE, usuario.getNombre());
+            cv.put(CAMPO_EMAIL, usuario.getEmail());
+            cv.put(CAMPO_CONTRASENA, usuario.getContrasena());
+            cv.put(CAMPO_TIPOUSUARIO, usuario.getTipoUsuario().toString());
 
-        SQLiteDatabase db = conexionDb.getWritableDatabase();
+            SQLiteDatabase db = conexionDb.getWritableDatabase();
 
-        Long id = db.insert(TABLA_USUARIO, null, cv);
+            Long id = db.insert(TABLA_USUARIO, null, cv);
 
-        db.close();
+            db.close();
 
-        if (id.intValue() > 0)
-        {
-            usuario.setId(id.intValue());
-            return true;
+            if (id.intValue() > 0)
+            {
+                usuario.setId(id.intValue());
+                return true;
+            }
+
+            return false;
+
         }
-
-        return false;
-    }
 
     @Override
     public boolean actualizar(Usuario usuario) {
