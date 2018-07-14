@@ -1,8 +1,10 @@
 package ado.edu.itla.taskapp.repositorio.db;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,8 @@ import ado.edu.itla.taskapp.repositorio.UsuarioRepositorio;
 
 public class UsuarioRepositorioDBImpl implements UsuarioRepositorio {
 
+    private String LOG_TAG = "UsuarioRepositorioDBImpl";
+
     private  ConexionDb conexionDb;
     private static final String CAMPO_NOMBRE = "nombre";
     private static final String CAMPO_EMAIL = "email";
@@ -19,36 +23,41 @@ public class UsuarioRepositorioDBImpl implements UsuarioRepositorio {
     private static final String CAMPO_TIPOUSUARIO = "tipoUsuario";
     private static final String TABLA_USUARIO = "usuario";
 
+    public UsuarioRepositorioDBImpl(Context context){
+        conexionDb = new ConexionDb(context);
+    }
+
     @Override
     public boolean guardar(Usuario usuario) {
 
-        if (usuario.getId() != null && usuario.getId() > 0)
-        {
-            return actualizar(usuario);
-        }
+        Log.i(LOG_TAG, "Guardando usuario : " + usuario.toString());
 
-            ContentValues cv = new ContentValues();
+        ContentValues cv = new ContentValues();
+        cv.put(CAMPO_NOMBRE, usuario.getNombre());
+        cv.put(CAMPO_EMAIL, usuario.getEmail());
+        cv.put(CAMPO_CONTRASENA, usuario.getContrasena());
+        cv.put(CAMPO_TIPOUSUARIO, usuario.getTipoUsuario().name());
 
-            cv.put(CAMPO_NOMBRE, usuario.getNombre());
-            cv.put(CAMPO_EMAIL, usuario.getEmail());
-            cv.put(CAMPO_CONTRASENA, usuario.getContrasena());
-            cv.put(CAMPO_TIPOUSUARIO, usuario.getTipoUsuario().toString());
+        SQLiteDatabase db = conexionDb.getReadableDatabase();
 
-            SQLiteDatabase db = conexionDb.getWritableDatabase();
-
-            Long id = db.insert(TABLA_USUARIO, null, cv);
-
+        if (usuario.getId() != null && usuario.getId() > 0) {
+            int cantidad = db.update(TABLA_USUARIO, cv, "id = ?", new String[]{usuario.getId().toString()});
             db.close();
 
-            if (id.intValue() > 0)
-            {
-                usuario.setId(id.intValue());
+            return cantidad > 0;
+
+        } else {
+            Long id = db.insert(TABLA_USUARIO, null, cv);
+            db.close();
+
+            if (id.intValue() > 0) {
+                usuario.setId((id.intValue()));
                 return true;
             }
-
-            return false;
-
         }
+        return false;
+    }
+
 
     @Override
     public boolean actualizar(Usuario usuario) {
@@ -70,6 +79,34 @@ public class UsuarioRepositorioDBImpl implements UsuarioRepositorio {
 
     @Override
     public Usuario buscar(int id) {
+        Usuario usuario = null;
+
+        SQLiteDatabase db = conexionDb.getReadableDatabase();
+        String[] columnas = {"id", CAMPO_NOMBRE, CAMPO_EMAIL, CAMPO_CONTRASENA, CAMPO_TIPOUSUARIO};
+
+        Cursor cr = db.query(TABLA_USUARIO, columnas, null, null, null,null, null, null);
+        cr.moveToFirst();
+
+            String nombre = cr.getString(cr.getColumnIndex(CAMPO_NOMBRE));
+            String email = cr.getString(cr.getColumnIndex(CAMPO_EMAIL));
+            String contrasena = cr.getString(cr.getColumnIndex(CAMPO_CONTRASENA));
+            String tipoUsuario = cr.getString(cr.getColumnIndex(CAMPO_TIPOUSUARIO));
+
+            usuario = new Usuario();
+            usuario.setNombre(nombre);
+            usuario.setEmail(email);
+            usuario.setContrasena(contrasena);
+            usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(tipoUsuario));
+        
+
+        cr.close();
+        db.close();
+
+        return usuario;
+    }
+
+    @Override
+    public List<Usuario> buscarTecnicos() {
         return null;
     }
 

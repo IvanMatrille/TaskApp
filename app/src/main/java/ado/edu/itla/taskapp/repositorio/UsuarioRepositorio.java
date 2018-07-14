@@ -6,11 +6,13 @@ import ado.edu.itla.taskapp.entidad.Usuario;
 
 public interface UsuarioRepositorio {
 
-    boolean guardar(Usuario usuario);
+    public boolean guardar(Usuario usuario);
 
-    boolean actualizar(Usuario usuario);
+    public boolean actualizar(Usuario usuario);
 
-    Usuario buscar(int id);
+    public Usuario buscar(int id);
 
-    List<Usuario> buscar(String nombre);
+    public List<Usuario> buscarTecnicos();
+
+    public List<Usuario> buscar(String nombre);
 }
