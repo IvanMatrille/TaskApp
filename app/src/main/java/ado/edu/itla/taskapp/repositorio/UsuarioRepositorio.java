@@ -10,6 +10,8 @@ public interface UsuarioRepositorio {
 
     public boolean actualizar(Usuario usuario);
 
+    public Usuario UsuarioExiste(Usuario usuario);
+
     public Usuario buscar(int id);
 
     public List<Usuario> buscarTecnicos();

@@ -28,6 +28,11 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
+    public Usuario(String email, String contrasena) {
+        this.email = email;
+        this.contrasena = contrasena;
+    }
+
     public Integer getId() {
         return id;
     }

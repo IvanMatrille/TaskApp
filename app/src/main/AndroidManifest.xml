@@ -19,7 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".vista.Registro"></activity>
+        <activity android:name=".vista.Registro" />
+        <activity android:name=".vista.Tareas" />
+        <activity android:name=".vista.UsuarioTecnico" />
+        <activity android:name=".vista.Tarea" />
+        <activity android:name=".vista.TareaUsuarioNormal" />
+        <activity android:name=".vista.AsignarTareaUsuarioNormal" />
+        <activity android:name=".vista.EstadoTarea"></activity>
     </application>
 
 </manifest>

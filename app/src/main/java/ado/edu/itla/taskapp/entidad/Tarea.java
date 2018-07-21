@@ -20,6 +20,17 @@ public class Tarea {
     private Usuario usuarioCreador;
     private Usuario usuarioAsignado;
 
+    public Tarea(String nombre, String descripcion, Date fecha, Date fechaterminado, tareaestado estado, Categoria categoria, Usuario usuarioCreador, Usuario usuarioAsignado) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.fechaterminado = fechaterminado;
+        this.estado = estado;
+        this.categoria = categoria;
+        this.usuarioCreador = usuarioCreador;
+        this.usuarioAsignado = usuarioAsignado;
+    }
+
     public Integer getId() {
         return id;
     }

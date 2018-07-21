@@ -97,7 +97,7 @@ public class UsuarioRepositorioDBImpl implements UsuarioRepositorio {
             usuario.setEmail(email);
             usuario.setContrasena(contrasena);
             usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(tipoUsuario));
-        
+
 
         cr.close();
         db.close();
@@ -136,5 +136,36 @@ public class UsuarioRepositorioDBImpl implements UsuarioRepositorio {
         db.close();
 
         return usuarios;
+    }
+
+    public Usuario UsuarioExiste(Usuario usuario)
+    {
+        SQLiteDatabase bd = conexionDb.getReadableDatabase();
+        String columnas[] = {CAMPO_EMAIL, CAMPO_CONTRASENA};
+        String email = usuario.getEmail();
+        String contrasena = usuario.getContrasena();
+        //String args[] = {usuario.getEmail().toString(), usuario.getContrasena().toString()};
+
+        //Cursor cr = bd.query(TABLA_USUARIO, columnas, "email = ?, AND contrasena = ?", args,null, null, null);
+        Cursor cr = bd.rawQuery("SELECT id, "+CAMPO_EMAIL+", "+CAMPO_NOMBRE+", "+CAMPO_TIPOUSUARIO +" FROM usuario WHERE email='" +email +"' AND contrasena='"+ contrasena +"'", null);
+
+        if (cr.moveToFirst()){
+             int id = cr.getInt(cr.getColumnIndex("id"));
+            String nombre = cr.getString(cr.getColumnIndex("nombre"));
+            String tipoUsuario = cr.getString(cr.getColumnIndex("tipoUsuario"));
+
+            usuario.setNombre(nombre);
+            usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(tipoUsuario));
+
+            if(id > 0)
+            {
+                return usuario;
+            }
+        }
+
+        cr.close();
+        bd.close();
+
+        return null;
     }
 }

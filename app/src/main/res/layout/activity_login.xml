@@ -18,32 +18,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/et_usuario"
-        android:layout_width="302dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
         android:text="Contraseña"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_usuario" />
+        app:layout_constraintTop_toBottomOf="@+id/etUsuarioLogin" />
 
     <EditText
-        android:id="@+id/ed_contrasena"
+        android:id="@+id/ed_contrasenaLogin"
         android:layout_width="305dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -55,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Button
-        android:id="@+id/tbn_inicio"
+        android:id="@+id/btn_inicio"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="68dp"
@@ -63,7 +51,7 @@
         android:layout_marginTop="88dp"
         android:text="Inicio"
         app:layout_constraintStart_toEndOf="@+id/tv_registrarse"
-        app:layout_constraintTop_toBottomOf="@+id/ed_contrasena" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_contrasenaLogin" />
 
     <TextView
         android:id="@+id/tv_registrarse"
@@ -76,5 +64,17 @@
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_contrasena" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_contrasenaLogin" />
+
+    <EditText
+        android:id="@+id/etUsuarioLogin"
+        android:layout_width="295dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 </android.support.constraint.ConstraintLayout>

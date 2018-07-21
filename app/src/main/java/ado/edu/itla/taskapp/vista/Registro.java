@@ -2,6 +2,7 @@ package ado.edu.itla.taskapp.vista;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -49,19 +50,25 @@ public class Registro extends AppCompatActivity {
 
                 //CONVIERTE LOS COMPONENTES GRAFICOS A LOS TIPOS DE DATOS NECESARIOS PARA SER INSERTADOS
                 final String emailSt = txtEmail.getText().toString();
-                final String nombreSt = txtEmail.getText().toString();
-                final String contrasenaSt = txtEmail.getText().toString();
+                final String nombreSt = txtNombre.getText().toString();
+                final String contrasenaSt = txtContrasena.getText().toString();
 
-                String c1 = txtContrasena.getText().toString();
-                String c2 = txtContrasenaConfirmada.getText().toString();
+                String contrasena1 = txtContrasena.getText().toString();
+                String contrasena2 = txtContrasenaConfirmada.getText().toString();
 
                 //VALIDA QUE LOS CAMPOS DE CONTRASENIA SEAN IGUALES
-                if(txtContrasena.getText().toString().equals(txtContrasenaConfirmada.getText().toString())){
+                if(contrasena1.equals(contrasena2)){
+                    Usuario usuario = new Usuario(nombreSt, emailSt, contrasenaSt, Usuario.TipoUsuario.valueOf(tipoUsuario));
 
-                    usuarioRepositorio.guardar(new Usuario(nombreSt, emailSt, contrasenaSt, Usuario.TipoUsuario.valueOf(tipoUsuario)));
+                    usuarioRepositorio.guardar(usuario);
+
+                    Toast toast = Toast.makeText(getApplicationContext(), "Usuario: " + usuario.getNombre() + " registrado exitosamente.", Toast.LENGTH_SHORT);
+                    toast.show();
+
+                    Log.i(LOG_TAG, usuario.toString());
 
                 }else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden", Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), "La contraseñas no coinciden", Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
