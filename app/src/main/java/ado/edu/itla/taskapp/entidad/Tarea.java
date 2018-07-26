@@ -16,11 +16,11 @@ public class Tarea {
     private Date fecha;
     private Date fechaterminado;
     private tareaestado estado;
-    private Categoria categoria;
-    private Usuario usuarioCreador;
-    private Usuario usuarioAsignado;
+    private int categoria;
+    private int usuarioCreador;
+    private int usuarioAsignado;
 
-    public Tarea(String nombre, String descripcion, Date fecha, Date fechaterminado, tareaestado estado, Categoria categoria, Usuario usuarioCreador, Usuario usuarioAsignado) {
+    public Tarea(String nombre, String descripcion, Date fecha, Date fechaterminado, tareaestado estado, int categoria, int usuarioCreador, int usuarioAsignado) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.fecha = fecha;
@@ -79,43 +79,27 @@ public class Tarea {
         this.estado = estado;
     }
 
-    public Categoria getCategoria() {
+    public int getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
 
-    public Usuario getUsuarioCreador() {
+    public int getUsuarioCreador() {
         return usuarioCreador;
     }
 
-    public void setUsuarioCreador(Usuario usuarioCreador) {
+    public void setUsuarioCreador(int usuarioCreador) {
         this.usuarioCreador = usuarioCreador;
     }
 
-    public Usuario getUsuarioAsignado() {
+    public int getUsuarioAsignado() {
         return usuarioAsignado;
     }
 
-    public void setUsuarioAsignado(Usuario usuarioAsignado) {
+    public void setUsuarioAsignado(int usuarioAsignado) {
         this.usuarioAsignado = usuarioAsignado;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("Tarea{");
-        sb.append("id=").append(id);
-        sb.append(", nombre='").append(nombre).append('\'');
-        sb.append(", descripcion='").append(descripcion).append('\'');
-        sb.append(", fecha=").append(fecha);
-        sb.append(", fechaterminado=").append(fechaterminado);
-        sb.append(", estado=").append(estado);
-        sb.append(", categoria=").append(categoria);
-        sb.append(", usuarioCreador=").append(usuarioCreador);
-        sb.append(", usuarioAsignado=").append(usuarioAsignado);
-        sb.append('}');
-        return sb.toString();
     }
 }

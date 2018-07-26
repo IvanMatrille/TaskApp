@@ -21,6 +21,15 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
+    //Constructor con todos los parametros.
+    public Usuario(Integer id, String nombre, String email, String contrasena, TipoUsuario tipoUsuario) {
+        this.id = id;
+        this.nombre = nombre;
+        this.email = email;
+        this.contrasena = contrasena;
+        this.tipoUsuario = tipoUsuario;
+    }
+
     public Usuario(Integer id, String nombre, String email, String contrasena) {
         this.id = id;
         this.nombre = nombre;

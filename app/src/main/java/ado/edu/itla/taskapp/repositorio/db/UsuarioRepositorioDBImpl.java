@@ -106,8 +106,32 @@ public class UsuarioRepositorioDBImpl implements UsuarioRepositorio {
     }
 
     @Override
-    public List<Usuario> buscarTecnicos() {
-        return null;
+    public List<Usuario> buscarTecnicos()
+    {
+        List<Usuario> usuarios = new ArrayList<>();
+
+        SQLiteDatabase db = conexionDb.getReadableDatabase();
+        String[] columnas = {"id", CAMPO_NOMBRE, CAMPO_EMAIL, CAMPO_CONTRASENA, CAMPO_TIPOUSUARIO};
+
+        Cursor cr = db.query(TABLA_USUARIO, columnas, null,null, null, null,null,null);
+        cr.moveToFirst();
+
+        while (!cr.isAfterLast())
+        {
+            int id = cr.getInt(cr.getColumnIndex("id"));
+            String nombre = cr.getString(cr.getColumnIndex("nombre"));
+            String email = cr.getString(cr.getColumnIndex("email"));
+            String contrasena = cr.getString(cr.getColumnIndex("contrasena"));
+            String tipoUsuario = cr.getString(cr.getColumnIndex("tipoUsuario"));
+
+            usuarios.add(new Usuario(id, nombre, email, contrasena, Usuario.TipoUsuario.valueOf(tipoUsuario)));
+            cr.moveToNext();
+        }
+
+        cr.close();
+        db.close();
+
+        return usuarios;
     }
 
     @Override
