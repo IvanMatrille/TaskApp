@@ -2,33 +2,44 @@ package ado.edu.itla.taskapp.vista;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ado.edu.itla.taskapp.R;
 import ado.edu.itla.taskapp.entidad.Categoria;
+import ado.edu.itla.taskapp.entidad.Tarea;
 import ado.edu.itla.taskapp.entidad.Usuario;
 import ado.edu.itla.taskapp.repositorio.CategoriaRepositorio;
+import ado.edu.itla.taskapp.repositorio.LoginName;
+import ado.edu.itla.taskapp.repositorio.TareaRepositorio;
 import ado.edu.itla.taskapp.repositorio.UsuarioRepositorio;
 import ado.edu.itla.taskapp.repositorio.db.CategoriaRepositorioDbImp;
+import ado.edu.itla.taskapp.repositorio.db.TareaRepositorioDBImpl;
 import ado.edu.itla.taskapp.repositorio.db.UsuarioRepositorioDBImpl;
 
-public class AsignarTareaUsuarioNormal extends AppCompatActivity {
+public class AsignarTarea extends AppCompatActivity {
+    private final static String LOG_TAG = "AsignarTarea";
 
     UsuarioRepositorio usuarioR;
     CategoriaRepositorio categoriaR;
+    TareaRepositorio tareaR;
     Usuario usuario;
     Categoria categoria;
+    Tarea tarea;
     Spinner spTecnicos;
     Spinner spCategoria;
     Button btnGuardar;
+    EditText descripcion;
     List<String> usuariosList = new ArrayList<>();
     List<String> categoriaList = new ArrayList<>();
     String usuarioNombre;
@@ -43,13 +54,16 @@ public class AsignarTareaUsuarioNormal extends AppCompatActivity {
 
         usuario = new Usuario();
         categoria = new Categoria();
+        tarea = new Tarea();
 
         spCategoria = (Spinner)findViewById(R.id.spCategoria);
         spTecnicos = (Spinner)findViewById(R.id.spTecnicos);
         btnGuardar = (Button)findViewById(R.id.btnGuardar);
+        descripcion = (EditText)findViewById(R.id.etDescripcion);
 
         usuarioR = new UsuarioRepositorioDBImpl(this);
         categoriaR = new CategoriaRepositorioDbImp(this);
+        tareaR = new TareaRepositorioDBImpl(this);
 
         //BUSCA LAS CATEGORIAS Y AGREGA A LA LIST.
         for (int x = 0; x <categoriaR.buscar("").size()-1; x++){
@@ -74,8 +88,8 @@ public class AsignarTareaUsuarioNormal extends AppCompatActivity {
                 categoriaNombre = categoriaR.buscar("").get(position).getNombre();
                 categoriaId = categoriaR.buscar("").get(position).getId();
 
-                Toast toast = Toast.makeText(getApplicationContext(), "id: "+ categoriaId +" nombre: " +categoriaNombre, Toast.LENGTH_SHORT);
-                toast.show();
+               // Toast toast = Toast.makeText(getApplicationContext(), "id: "+ categoriaId +" nombre: " +categoriaNombre, Toast.LENGTH_SHORT);
+                //toast.show();
             }
 
             @Override
@@ -90,8 +104,8 @@ public class AsignarTareaUsuarioNormal extends AppCompatActivity {
                 usuarioId = usuarioR.buscarTecnicos().get(position).getId();
                 usuarioNombre = usuarioR.buscarTecnicos().get(position).getNombre();
 
-                Toast toast = Toast.makeText(getApplicationContext(), "id : " + usuarioId + " nombre : " +usuarioNombre, Toast.LENGTH_LONG);
-                toast.show();
+                //Toast toast = Toast.makeText(getApplicationContext(), "id : " + usuarioId + " nombre : " +usuarioNombre, Toast.LENGTH_LONG);
+                //toast.show();
             }
 
             @Override
@@ -100,11 +114,26 @@ public class AsignarTareaUsuarioNormal extends AppCompatActivity {
             }
         });
 
+        //CREA LA TAREA
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getApplicationContext(), "idCat: " +categoriaId +"cat: " +categoriaNombre+ " idUs " +usuarioId+ " usu: "+usuarioNombre, Toast.LENGTH_LONG);
+
+                tarea.setNombre(null);
+                tarea.setDescripcion(descripcion.getText().toString());
+                tarea.setFecha(new Date(System.currentTimeMillis()));
+                tarea.setUsuarioCreador(1);
+                tarea.setEstado(Tarea.tareaestado.pendiente);
+                tarea.setUsuarioAsignado(usuarioId);
+                tarea.setCategoria(categoriaId);
+                tarea.setUsuarioCreador(LoginName.getInstance().getUsuario().getId());
+
+                tareaR.guardar(tarea);
+
+                Toast toast = Toast.makeText(getApplicationContext(), "Tarea registrada!", Toast.LENGTH_LONG);
+
                 toast.show();
+                Log.i(LOG_TAG, "Tarea: " +tarea.toString());
             }
         });
     }

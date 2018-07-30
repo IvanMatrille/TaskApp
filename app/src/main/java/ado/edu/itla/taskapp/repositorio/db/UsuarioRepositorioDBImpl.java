@@ -179,6 +179,7 @@ public class UsuarioRepositorioDBImpl implements UsuarioRepositorio {
             String tipoUsuario = cr.getString(cr.getColumnIndex("tipoUsuario"));
 
             usuario.setNombre(nombre);
+            usuario.setId(id);
             usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(tipoUsuario));
 
             if(id > 0)

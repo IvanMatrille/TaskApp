@@ -8,10 +8,10 @@
 
     <Button
         android:id="@+id/button6"
-        android:layout_width="107dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="101dp"
+        android:layout_height="45dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="16dp"
         android:text="Todas"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,10 +19,10 @@
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="102dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="95dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="Proceso"
         app:layout_constraintStart_toEndOf="@+id/button6"
@@ -30,21 +30,23 @@
 
     <Button
         android:id="@+id/btnCreaTarea"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="128dp"
+        android:layout_height="44dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:text="+ Crear Tarea"
         app:layout_constraintStart_toEndOf="@+id/button7"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:layout_width="350dp"
-        android:layout_height="374dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/lvTareas"
+        android:layout_width="338dp"
+        android:layout_height="415dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
+
 </android.support.constraint.ConstraintLayout>

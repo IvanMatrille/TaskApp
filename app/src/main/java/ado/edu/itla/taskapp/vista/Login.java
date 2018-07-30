@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import ado.edu.itla.taskapp.R;
 import ado.edu.itla.taskapp.entidad.Usuario;
+import ado.edu.itla.taskapp.repositorio.LoginName;
 import ado.edu.itla.taskapp.repositorio.UsuarioRepositorio;
 import ado.edu.itla.taskapp.repositorio.db.UsuarioRepositorioDBImpl;
 
@@ -28,6 +29,9 @@ public class Login extends AppCompatActivity {
         final Button btnIniciarSesion = (Button)findViewById(R.id.btn_inicio);
         final EditText et_usuario = (EditText)findViewById(R.id.etUsuarioLogin);
         final EditText et_contrasena = (EditText)findViewById(R.id.ed_contrasenaLogin);
+
+        //SQLiteDatabase db = new ConexionDb(this).getWritableDatabase();
+        //db.execSQL(EstructuraDb.TABLA_TAREA);
 
         usuarioRepositorio = new UsuarioRepositorioDBImpl(this);
 
@@ -47,6 +51,8 @@ public class Login extends AppCompatActivity {
                 usuario = usuarioRepositorio.UsuarioExiste(usuario);
 
                 if (usuario != null){
+                    LoginName.getInstance().setUsuario(usuario);
+                    Toast.makeText(getApplicationContext(), usuario.getId().toString(), Toast.LENGTH_LONG).show();
 
                     if (usuario.getTipoUsuario() == Usuario.TipoUsuario.NORMAL)
                     {

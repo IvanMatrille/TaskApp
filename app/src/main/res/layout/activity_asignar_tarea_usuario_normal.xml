@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vista.AsignarTareaUsuarioNormal">
+    tools:context=".vista.AsignarTarea">
 
     <Spinner
         android:id="@+id/spCategoria"
@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/spTecnicos" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/etDescripcion"
         android:layout_width="303dp"
         android:layout_height="43dp"
         android:layout_marginLeft="32dp"
@@ -83,7 +83,7 @@
         android:layout_marginTop="36dp"
         android:text="Cancelar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
 
     <Button
         android:id="@+id/btnGuardar"
@@ -94,6 +94,6 @@
         android:layout_marginTop="36dp"
         android:text="Guardar"
         app:layout_constraintStart_toEndOf="@+id/btnCancelar"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
 
 </android.support.constraint.ConstraintLayout>
