@@ -54,7 +54,6 @@ public class TareaRepositorioDBImpl implements TareaRepositorio {
                 Log.i(LOG_TAG, "Se inserto tarea: " +cantidad);
             }else {
                 Log.i(LOG_TAG, "No e inserto tarea");
-
             }
             Log.i(LOG_TAG, "Tarea creada" + " idTarea: "+ tarea.getId());
 
@@ -68,24 +67,24 @@ public class TareaRepositorioDBImpl implements TareaRepositorio {
 
     @Override
     public Tarea buscar(int id) {
-        Tarea tarea = null;
-
-        //id que se va a buscar convertido a string.
-        String idST = Integer.toString(id);
-
         SQLiteDatabase db = conexionDb.getReadableDatabase();
 
         String[] columnas = new String[]{"id", CAMPO_NOMBRE, CAMPO_DESCRICION, CAMPO_FECHA, CAMPO_FECHA_COMPLETADO, CAMPO_ESTADO, CAMPO_USUARIO_CREADOR_ID, CAMPOO_USUARIO_ASIGNADO_ID, CAMPO_CATEGORIA_ID};
-        String[] arg = new String[]{idST};
 
-        Cursor cr = db.query(TABLA_TAREA, columnas, "id = ?", arg, null,null, null);
+        //String idST = Integer.toString(LoginName.getInstance().getUsuario().getId());
+        String idST = Integer.toString(id);
+        String arg[] = new String[]{idST};
+
+        Cursor cr = db.query(TABLA_TAREA, columnas, "id = ?", arg, null, null, null, null);
         if (cr.moveToFirst()){
+
+            Tarea tarea = new Tarea();
 
             int idCategoria = cr.getInt(cr.getColumnIndex("id"));
             String nombre = cr.getString(cr.getColumnIndex(CAMPO_NOMBRE));
             String descripcion = cr.getString(cr.getColumnIndex(CAMPO_DESCRICION));
-            String fecha = cr.getString(cr.getColumnIndex(CAMPO_FECHA));
-            String fecha_completado = cr.getString(cr.getColumnIndex(CAMPO_FECHA_COMPLETADO));
+            Long fecha = cr.getLong(cr.getColumnIndex(CAMPO_FECHA));
+            long fecha_completado = cr.getLong(cr.getColumnIndex(CAMPO_FECHA_COMPLETADO));
             String estado = cr.getString(cr.getColumnIndex(CAMPO_ESTADO));
             int usuario_creador_id = cr.getInt(cr.getColumnIndex(CAMPO_USUARIO_CREADOR_ID));
             int usuario_asigador_id = cr.getInt(cr.getColumnIndex(CAMPOO_USUARIO_ASIGNADO_ID));
@@ -101,12 +100,8 @@ public class TareaRepositorioDBImpl implements TareaRepositorio {
             tarea.setUsuarioAsignado(usuario_asigador_id);
             tarea.setCategoria(categoria_id);
 
-            cr.close();
-            db.close();
-
             return tarea;
         }
-
         return null;
     }
 
@@ -161,46 +156,47 @@ public class TareaRepositorioDBImpl implements TareaRepositorio {
     public List<Tarea> buscarCreadaPor(Usuario usuario) {
         SQLiteDatabase db = conexionDb.getReadableDatabase();
 
-        Tarea tarea = new Tarea();
         List<Tarea> tareas = new ArrayList<>();
 
         String[] columnas = new String[]{"id", CAMPO_NOMBRE, CAMPO_DESCRICION, CAMPO_FECHA, CAMPO_FECHA_COMPLETADO, CAMPO_ESTADO, CAMPO_USUARIO_CREADOR_ID, CAMPOO_USUARIO_ASIGNADO_ID, CAMPO_CATEGORIA_ID};
 
+        //String idST = Integer.toString(LoginName.getInstance().getUsuario().getId());
         String idST = Integer.toString(usuario.getId());
         String arg[] = new String[]{idST};
 
-        Cursor cr = db.query(TABLA_TAREA, columnas, "usuario_creador_id = ?", arg, null,null, null);
+        Cursor cr = db.query(TABLA_TAREA, columnas, "usuario_creador_id = ?", arg, null, null, null, null);
         cr.moveToFirst();
 
         while (!cr.isAfterLast()){
+            Tarea tarea = new Tarea();
 
-            int idCategoria = cr.getInt(cr.getColumnIndex("id"));
-            String nombre = cr.getString(cr.getColumnIndex(CAMPO_NOMBRE));
-            String descripcion = cr.getString(cr.getColumnIndex(CAMPO_DESCRICION));
-            Long fecha = cr.getLong(cr.getColumnIndex(CAMPO_FECHA));
-            long fecha_completado = cr.getLong(cr.getColumnIndex(CAMPO_FECHA_COMPLETADO));
-            String estado = cr.getString(cr.getColumnIndex(CAMPO_ESTADO));
-            int usuario_creador_id = cr.getInt(cr.getColumnIndex(CAMPO_USUARIO_CREADOR_ID));
-            int usuario_asigador_id = cr.getInt(cr.getColumnIndex(CAMPOO_USUARIO_ASIGNADO_ID));
-            int categoria_id = cr.getInt(cr.getColumnIndex(CAMPO_CATEGORIA_ID));
+                int idCategoria = cr.getInt(cr.getColumnIndex("id"));
+                String nombre = cr.getString(cr.getColumnIndex(CAMPO_NOMBRE));
+                String descripcion = cr.getString(cr.getColumnIndex(CAMPO_DESCRICION));
+                Long fecha = cr.getLong(cr.getColumnIndex(CAMPO_FECHA));
+                long fecha_completado = cr.getLong(cr.getColumnIndex(CAMPO_FECHA_COMPLETADO));
+                String estado = cr.getString(cr.getColumnIndex(CAMPO_ESTADO));
+                int usuario_creador_id = cr.getInt(cr.getColumnIndex(CAMPO_USUARIO_CREADOR_ID));
+                int usuario_asigador_id = cr.getInt(cr.getColumnIndex(CAMPOO_USUARIO_ASIGNADO_ID));
+                int categoria_id = cr.getInt(cr.getColumnIndex(CAMPO_CATEGORIA_ID));
 
-            tarea.setId(idCategoria);
-            tarea.setNombre(nombre);
-            tarea.setDescripcion(descripcion);
-            tarea.setFecha(new Date(fecha));
-            tarea.setFechaterminado(new Date(fecha_completado));
-            tarea.setEstado(Tarea.tareaestado.valueOf(estado));
-            tarea.setUsuarioCreador(usuario_creador_id);
-            tarea.setUsuarioAsignado(usuario_asigador_id);
-            tarea.setCategoria(categoria_id);
+                tarea.setId(idCategoria);
+                tarea.setNombre(nombre);
+                tarea.setDescripcion(descripcion);
+                tarea.setFecha(new Date(fecha));
+                tarea.setFechaterminado(new Date(fecha_completado));
+                tarea.setEstado(Tarea.tareaestado.valueOf(estado));
+                tarea.setUsuarioCreador(usuario_creador_id);
+                tarea.setUsuarioAsignado(usuario_asigador_id);
+                tarea.setCategoria(categoria_id);
 
-            tareas.add(tarea);
-            cr.moveToNext();
-
+                tareas.add(tarea);
+                cr.moveToNext();
         }
+
         cr.close();
         db.close();
 
-        return tareas;    }
-
+        return tareas;
+    }
 }

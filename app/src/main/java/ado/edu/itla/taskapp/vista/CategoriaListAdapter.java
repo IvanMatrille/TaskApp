@@ -23,7 +23,6 @@ public class CategoriaListAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-
         return categorias.size();
     }
 

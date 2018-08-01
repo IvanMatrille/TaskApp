@@ -1,5 +1,6 @@
 package ado.edu.itla.taskapp.vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -128,11 +129,15 @@ public class AsignarTarea extends AppCompatActivity {
                 tarea.setCategoria(categoriaId);
                 tarea.setUsuarioCreador(LoginName.getInstance().getUsuario().getId());
 
-                tareaR.guardar(tarea);
+                if (tareaR.guardar(tarea)){
+                    Toast.makeText(getApplicationContext(), "Tarea registrada!", Toast.LENGTH_LONG).show();
 
-                Toast toast = Toast.makeText(getApplicationContext(), "Tarea registrada!", Toast.LENGTH_LONG);
+                    Intent intent = new Intent(AsignarTarea.this, TareaUsuarioNormal.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(getApplicationContext(), "Error al registrar tarea!", Toast.LENGTH_LONG).show();
+                }
 
-                toast.show();
                 Log.i(LOG_TAG, "Tarea: " +tarea.toString());
             }
         });

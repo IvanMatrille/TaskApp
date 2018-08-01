@@ -20,7 +20,6 @@ public class CategoriaListaActivity extends AppCompatActivity {
     private CategoriaRepositorio categoriaRepositorio;
     private static final String LOG_TAG = "CategoriaListaActivity";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

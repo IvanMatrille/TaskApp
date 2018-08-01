@@ -32,6 +32,7 @@ public class CategoriaActivity extends AppCompatActivity {
 
         Bundle paraBunble = getIntent().getExtras();
         if (paraBunble != null && paraBunble.containsKey("categoria")) {
+
             categoria = (Categoria)paraBunble.getSerializable("categoria");
             txtNombre.setText(categoria.getNombre());
             btnGuardar.setText("Actualizar");

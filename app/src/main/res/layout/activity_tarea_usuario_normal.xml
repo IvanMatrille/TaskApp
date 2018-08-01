@@ -42,7 +42,7 @@
     <ListView
         android:id="@+id/lvTareas"
         android:layout_width="338dp"
-        android:layout_height="415dp"
+        android:layout_height="435dp"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"

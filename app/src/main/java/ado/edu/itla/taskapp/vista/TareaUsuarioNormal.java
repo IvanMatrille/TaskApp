@@ -3,11 +3,17 @@ package ado.edu.itla.taskapp.vista;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.List;
 
 import ado.edu.itla.taskapp.R;
+import ado.edu.itla.taskapp.entidad.Tarea;
 import ado.edu.itla.taskapp.entidad.Usuario;
 import ado.edu.itla.taskapp.repositorio.LoginName;
 import ado.edu.itla.taskapp.repositorio.TareaListAdaptar;
@@ -15,8 +21,10 @@ import ado.edu.itla.taskapp.repositorio.TareaRepositorio;
 import ado.edu.itla.taskapp.repositorio.db.TareaRepositorioDBImpl;
 
 public class TareaUsuarioNormal extends AppCompatActivity {
+    private static final String LOG_TAG = "TareaUsuarioNormal";
     Button btnCreaTarea;
-    ListView lvTarea;
+    TareaRepositorio tareaR;
+    TareaRepositorio tareaR2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +32,33 @@ public class TareaUsuarioNormal extends AppCompatActivity {
         setContentView(R.layout.activity_tarea_usuario_normal);
 
         btnCreaTarea = (Button)findViewById(R.id.btnCreaTarea);
-        lvTarea = (ListView)findViewById(R.id.lvTareas);
-        TareaRepositorio tareaR = new TareaRepositorioDBImpl(this);
+        tareaR = new TareaRepositorioDBImpl(this);
+        final ListView lvTarea = (ListView)findViewById(R.id.lvTareas);
 
-        Usuario usuario = new Usuario();
+        final Usuario usuario = new Usuario();
         usuario.setId(LoginName.getInstance().getUsuario().getId());
 
-        TareaListAdaptar tareaListAdapter = new TareaListAdaptar(this, tareaR.buscarCreadaPor(usuario));
-        lvTarea.setAdapter(tareaListAdapter);
+        List<Tarea> tareas = tareaR.buscarCreadaPor(usuario);
+        Log.i(LOG_TAG, "Total de tareas : " + tareas.size());
 
+        final TareaListAdaptar tareaListAdaptar = new TareaListAdaptar(this, tareas);
+        lvTarea.setAdapter(tareaListAdaptar);
+
+        lvTarea.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Tarea tarea2 = new Tarea();
+                Tarea tarea = (Tarea) parent.getItemAtPosition(position);
+
+                long tareaLong = tareaListAdaptar.getItemId(position);
+                Toast.makeText(getApplicationContext(), ""+tarea, Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(TareaUsuarioNormal.this, EstadoTarea.class);
+                intent.putExtra("id", tarea.getId());
+                startActivity(intent);
+            }
+        });
         //CREA UNA TAREA.
         btnCreaTarea.setOnClickListener(new View.OnClickListener() {
             @Override

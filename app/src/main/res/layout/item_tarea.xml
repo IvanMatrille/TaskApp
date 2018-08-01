@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/txtDescripcion"
+        android:id="@+id/txtDescripcionET"
         android:layout_width="197dp"
         android:layout_height="41dp"
         android:layout_marginLeft="8dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtFecha"
+        android:id="@+id/txtFechaET"
         android:layout_width="wrap_content"
         android:layout_height="15dp"
         android:layout_marginEnd="8dp"
@@ -27,22 +27,22 @@
         android:text="txtFecha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.681"
-        app:layout_constraintStart_toEndOf="@+id/txtDescripcion"
+        app:layout_constraintStart_toEndOf="@+id/txtDescripcionET"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtUsuarioCreador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
         android:text="asignadoA"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescripcion" />
+        app:layout_constraintStart_toEndOf="@+id/textView10"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripcionET" />
 
     <TextView
-        android:id="@+id/txtEstado"
+        android:id="@+id/txtEstadoET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="232dp"
@@ -50,7 +50,7 @@
         android:layout_marginTop="60dp"
         android:text="txtEstado"
         app:layout_constraintStart_toEndOf="@+id/txtUsuarioCreador"
-        app:layout_constraintTop_toBottomOf="@+id/txtFecha" />
+        app:layout_constraintTop_toBottomOf="@+id/txtFechaET" />
 
     <TextView
         android:id="@+id/txtCategoriaLv"
@@ -58,8 +58,31 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="txtCategoria"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtUsuarioCreador" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="asignado A:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripcionET" />
+
+    <TextView
+        android:id="@+id/txtEstadoTarea"
+        android:layout_width="wrap_content"
+        android:layout_height="17dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="68dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFechaET" />
+
 </android.support.constraint.ConstraintLayout>
