@@ -10,6 +10,6 @@ public class Tarea extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tareas);
+        setContentView(R.layout.activity_tareas_tecnico);
     }
 }

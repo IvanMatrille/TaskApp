@@ -108,25 +108,27 @@ public class TareaRepositorioDBImpl implements TareaRepositorio {
     @Override
     public List<Tarea> buscarAsignaA(Usuario usuario) {
 
-        Tarea tarea = new Tarea();
         SQLiteDatabase db = conexionDb.getReadableDatabase();
 
         List<Tarea> tareas = new ArrayList<>();
 
         String[] columnas = new String[]{"id", CAMPO_NOMBRE, CAMPO_DESCRICION, CAMPO_FECHA, CAMPO_FECHA_COMPLETADO, CAMPO_ESTADO, CAMPO_USUARIO_CREADOR_ID, CAMPOO_USUARIO_ASIGNADO_ID, CAMPO_CATEGORIA_ID};
 
+        //String idST = Integer.toString(LoginName.getInstance().getUsuario().getId());
         String idST = Integer.toString(usuario.getId());
         String arg[] = new String[]{idST};
 
-        Cursor cr = db.query(TABLA_TAREA, columnas, "usuario_asignado_id = ?", arg, null,null, null);
+        Cursor cr = db.query(TABLA_TAREA, columnas, "usuario_asignado_id = ?", arg, null, null, null, null);
+        cr.moveToFirst();
 
         while (!cr.isAfterLast()){
+            Tarea tarea = new Tarea();
 
             int idCategoria = cr.getInt(cr.getColumnIndex("id"));
             String nombre = cr.getString(cr.getColumnIndex(CAMPO_NOMBRE));
             String descripcion = cr.getString(cr.getColumnIndex(CAMPO_DESCRICION));
-            String fecha = cr.getString(cr.getColumnIndex(CAMPO_FECHA));
-            String fecha_completado = cr.getString(cr.getColumnIndex(CAMPO_FECHA_COMPLETADO));
+            Long fecha = cr.getLong(cr.getColumnIndex(CAMPO_FECHA));
+            long fecha_completado = cr.getLong(cr.getColumnIndex(CAMPO_FECHA_COMPLETADO));
             String estado = cr.getString(cr.getColumnIndex(CAMPO_ESTADO));
             int usuario_creador_id = cr.getInt(cr.getColumnIndex(CAMPO_USUARIO_CREADOR_ID));
             int usuario_asigador_id = cr.getInt(cr.getColumnIndex(CAMPOO_USUARIO_ASIGNADO_ID));
@@ -144,8 +146,8 @@ public class TareaRepositorioDBImpl implements TareaRepositorio {
 
             tareas.add(tarea);
             cr.moveToNext();
-
         }
+
         cr.close();
         db.close();
 

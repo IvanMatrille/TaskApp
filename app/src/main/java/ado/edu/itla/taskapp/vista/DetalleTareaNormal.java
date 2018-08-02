@@ -11,7 +11,7 @@ import ado.edu.itla.taskapp.entidad.Tarea;
 import ado.edu.itla.taskapp.repositorio.TareaRepositorio;
 import ado.edu.itla.taskapp.repositorio.db.TareaRepositorioDBImpl;
 
-public class EstadoTarea extends AppCompatActivity {
+public class DetalleTareaNormal extends AppCompatActivity {
     Tarea tarea;
     TextView txtCategoria;
     TextView txtAsignadoA;

@@ -1,4 +1,4 @@
-package ado.edu.itla.taskapp.repositorio;
+package ado.edu.itla.taskapp.vista;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -16,15 +16,15 @@ import ado.edu.itla.taskapp.entidad.Tarea;
 import ado.edu.itla.taskapp.repositorio.db.CategoriaRepositorioDbImp;
 import ado.edu.itla.taskapp.repositorio.db.UsuarioRepositorioDBImpl;
 
-public class TareaListAdaptar extends BaseAdapter {
+public class TareaListAdaptarNormal extends BaseAdapter {
 
     private Activity activity;
     private List<Tarea> tareas;
     private List<Categoria> categorias;
     private UsuarioRepositorioDBImpl usuarioRDB;
-    private CategoriaRepositorioDbImp categoriaRDB;
+        private CategoriaRepositorioDbImp categoriaRDB;
 
-    public TareaListAdaptar(Activity activity, List<Tarea> tareas){
+    public TareaListAdaptarNormal(Activity activity, List<Tarea> tareas){
         this.tareas = tareas;
         this.activity = activity;
         usuarioRDB = new UsuarioRepositorioDBImpl(activity);
@@ -51,11 +51,11 @@ public class TareaListAdaptar extends BaseAdapter {
 
         if(convertView == null ){
             LayoutInflater layoutInflater = LayoutInflater.from(activity);
-            convertView = layoutInflater.inflate(R.layout.item_tarea, null, true);
+            convertView = layoutInflater.inflate(R.layout.item_tarea_normal, null, true);
         }
 
         TextView txtDescripcion = convertView.findViewById(R.id.txtDescripcionET);
-        TextView txtUsuarioCreador = convertView.findViewById(R.id.txtUsuarioCreador);
+        TextView txtUsuarioCreador = convertView.findViewById(R.id.txtCreador);
         TextView txtCategoria = convertView.findViewById(R.id.txtCategoriaLv);
         TextView txtFecha = convertView.findViewById(R.id.txtFechaET);
         TextView txtEstado = convertView.findViewById(R.id.txtEstadoET);

@@ -59,7 +59,7 @@ public class Login extends AppCompatActivity {
                         Intent intent = new Intent(Login.this, TareaUsuarioNormal.class);
                         startActivity(intent);
                     }else {
-                        Intent intent = new Intent(Login.this, Tareas.class);
+                        Intent intent = new Intent(Login.this, TareaUsuarioTecnico.class);
                         startActivity(intent);
                     }
 
