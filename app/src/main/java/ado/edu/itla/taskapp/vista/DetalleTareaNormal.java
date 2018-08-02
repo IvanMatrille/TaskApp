@@ -36,7 +36,6 @@ public class DetalleTareaNormal extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if(bundle != null && bundle.containsKey("id")){
             int Tarea = bundle.getInt("id");
-            TareaRepositorio tareaRepositorio;
             tarea = tareaR.buscar(Tarea);
 
             txtDescripcion.setText(tarea.getDescripcion().toString());

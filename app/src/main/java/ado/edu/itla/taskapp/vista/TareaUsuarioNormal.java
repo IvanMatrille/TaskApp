@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -46,11 +45,7 @@ public class TareaUsuarioNormal extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Tarea tarea2 = new Tarea();
                 Tarea tarea = (Tarea) parent.getItemAtPosition(position);
-
-                long tareaLong = tareaListAdaptarNormal.getItemId(position);
-                Toast.makeText(getApplicationContext(), ""+tarea, Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(TareaUsuarioNormal.this, DetalleTareaNormal.class);
                 intent.putExtra("id", tarea.getId());

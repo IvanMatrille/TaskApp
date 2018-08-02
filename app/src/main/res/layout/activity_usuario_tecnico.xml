@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vista.UsuarioTecnico">
+    tools:context=".vista.DetalleTareaTecnico">
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnListo"
         android:layout_width="98dp"
         android:layout_height="35dp"
         android:layout_marginLeft="16dp"
@@ -29,10 +29,10 @@
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/btnListo" />
 
     <TextView
-        android:id="@+id/tv_categoria"
+        android:id="@+id/txtCategoriaUT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="28dp"
@@ -55,10 +55,10 @@
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_categoria" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCategoriaUT" />
 
     <TextView
-        android:id="@+id/tv_usuario"
+        android:id="@+id/txtCreadorUT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="28dp"
@@ -81,10 +81,10 @@
         android:textColor="@android:color/black"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_usuario" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCreadorUT" />
 
     <TextView
-        android:id="@+id/tv_descripcion"
+        android:id="@+id/txtDescripcionUT"
         android:layout_width="wrap_content"
         android:layout_height="29dp"
         android:layout_marginLeft="28dp"
@@ -96,14 +96,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
-    <ListView
-        android:layout_width="350dp"
-        android:layout_height="152dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
-
     <Button
         android:id="@+id/button5"
         android:layout_width="122dp"
@@ -114,18 +106,18 @@
         android:background="@android:color/holo_blue_light"
         android:text="Agregar Nota "
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_descripcion" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripcionUT" />
 
     <TextView
-        android:id="@+id/tv_fecha"
+        android:id="@+id/txtFechaUT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:layout_marginTop="16dp"
-        android:text="03 / 12 / 1996"
-        android:textColor="@android:color/black"
+        android:text="00-00-0000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

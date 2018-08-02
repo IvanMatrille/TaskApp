@@ -60,8 +60,6 @@ public class TareaRepositorioDBImpl implements TareaRepositorio {
             return cantidad > 0;
 
         }
-        //Log.i(LOG_TAG, "Tarea creada" + tarea.toString());
-
         return false;
     }
 
@@ -114,7 +112,6 @@ public class TareaRepositorioDBImpl implements TareaRepositorio {
 
         String[] columnas = new String[]{"id", CAMPO_NOMBRE, CAMPO_DESCRICION, CAMPO_FECHA, CAMPO_FECHA_COMPLETADO, CAMPO_ESTADO, CAMPO_USUARIO_CREADOR_ID, CAMPOO_USUARIO_ASIGNADO_ID, CAMPO_CATEGORIA_ID};
 
-        //String idST = Integer.toString(LoginName.getInstance().getUsuario().getId());
         String idST = Integer.toString(usuario.getId());
         String arg[] = new String[]{idST};
 
@@ -200,5 +197,19 @@ public class TareaRepositorioDBImpl implements TareaRepositorio {
         db.close();
 
         return tareas;
+    }
+
+    @Override
+    public boolean actualizarEstado(Tarea tarea) {
+        ContentValues cv = new ContentValues();
+
+        cv.put(CAMPO_ESTADO, tarea.getEstado().toString());
+        SQLiteDatabase db = conexionDb.getWritableDatabase();
+
+        int cantidad = db.update(TABLA_TAREA, cv, "id = ?", new String[]{tarea.getId().toString()});
+        Log.i(LOG_TAG, "Estado Actualizado"+cantidad);
+
+        db.close();
+        return cantidad > 0;
     }
 }

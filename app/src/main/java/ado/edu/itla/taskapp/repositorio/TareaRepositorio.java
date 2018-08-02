@@ -14,4 +14,6 @@ public interface TareaRepositorio {
 
     public List<Tarea> buscarCreadaPor(Usuario usuario);
 
+    public boolean actualizarEstado(Tarea estado);
+
 }

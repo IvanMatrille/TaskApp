@@ -67,12 +67,12 @@ public class AsignarTarea extends AppCompatActivity {
         tareaR = new TareaRepositorioDBImpl(this);
 
         //BUSCA LAS CATEGORIAS Y AGREGA A LA LIST.
-        for (int x = 0; x <categoriaR.buscar("").size()-1; x++){
+        for (int x = 0; x <categoriaR.buscar("").size(); x++){
             categoriaList.add(categoriaR.buscar("").get(x).getNombre());
         }
 
         //BUSCA LOS TECNICOS Y AGREGA SU NOMBRE A LA LISTA DE USUARIOS TIPO STRING.
-        for (int i = 0; i < usuarioR.buscarTecnicos().size()-1; i++){
+        for (int i = 0; i < usuarioR.buscarTecnicos().size(); i++){
             usuariosList.add(usuarioR.buscarTecnicos().get(i).getNombre());
         }
 

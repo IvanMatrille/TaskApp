@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".vista.Registro" />
         <activity android:name=".vista.TareaUsuarioTecnico" />
-        <activity android:name=".vista.UsuarioTecnico" />
+        <activity android:name=".vista.DetalleTareaTecnico" />
         <activity android:name=".vista.Tarea" />
         <activity android:name=".vista.TareaUsuarioNormal" />
         <activity android:name=".vista.AsignarTarea" />
