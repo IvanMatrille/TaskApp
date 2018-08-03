@@ -81,6 +81,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="36dp"
+        android:background="@android:color/holo_red_light"
         android:text="Cancelar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
@@ -92,6 +93,7 @@
         android:layout_marginLeft="120dp"
         android:layout_marginStart="120dp"
         android:layout_marginTop="36dp"
+        android:background="@android:color/holo_green_light"
         android:text="Guardar"
         app:layout_constraintStart_toEndOf="@+id/btnCancelar"
         app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />

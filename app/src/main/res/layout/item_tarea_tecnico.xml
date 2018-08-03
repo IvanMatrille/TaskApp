@@ -31,13 +31,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtCreador"
+        android:id="@+id/txtAsignado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="asignador"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/txtDescripcionET" />
 
@@ -49,8 +51,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="txtCategoria"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtCreador" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAsignado" />
 
     <TextView
         android:id="@+id/textView10"
@@ -60,6 +64,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="Por:"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDescripcionET" />
 
@@ -71,6 +77,8 @@
         android:layout_marginRight="32dp"
         android:layout_marginTop="68dp"
         android:text="TextView"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFechaET" />
 

@@ -115,7 +115,7 @@ public class TareaRepositorioDBImpl implements TareaRepositorio {
         String idST = Integer.toString(usuario.getId());
         String arg[] = new String[]{idST};
 
-        Cursor cr = db.query(TABLA_TAREA, columnas, "usuario_asignado_id = ?", arg, null, null, null, null);
+        Cursor cr = db.query(TABLA_TAREA, columnas, "usuario_asignado_id = ?", arg, null, null, "id DESC", null);
         cr.moveToFirst();
 
         while (!cr.isAfterLast()){
@@ -163,7 +163,7 @@ public class TareaRepositorioDBImpl implements TareaRepositorio {
         String idST = Integer.toString(usuario.getId());
         String arg[] = new String[]{idST};
 
-        Cursor cr = db.query(TABLA_TAREA, columnas, "usuario_creador_id = ?", arg, null, null, null, null);
+        Cursor cr = db.query(TABLA_TAREA, columnas, "usuario_creador_id = ?", arg, null, null, "id DESC", null);
         cr.moveToFirst();
 
         while (!cr.isAfterLast()){

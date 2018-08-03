@@ -49,6 +49,7 @@
         android:layout_marginLeft="68dp"
         android:layout_marginStart="68dp"
         android:layout_marginTop="88dp"
+        android:background="@android:color/holo_blue_dark"
         android:text="Inicio"
         app:layout_constraintStart_toEndOf="@+id/tv_registrarse"
         app:layout_constraintTop_toBottomOf="@+id/ed_contrasenaLogin" />

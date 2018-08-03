@@ -84,7 +84,7 @@ public class UsuarioRepositorioDBImpl implements UsuarioRepositorio {
         SQLiteDatabase db = conexionDb.getReadableDatabase();
         String[] columnas = {"id", CAMPO_NOMBRE, CAMPO_EMAIL, CAMPO_CONTRASENA, CAMPO_TIPOUSUARIO};
 
-        Cursor cr = db.query(TABLA_USUARIO, columnas, null, null, null,null, null, null);
+        Cursor cr = db.query(TABLA_USUARIO, columnas, "id = ?", new String[]{Integer.toString(id)}, null,null, null, null);
         cr.moveToFirst();
 
             String nombre = cr.getString(cr.getColumnIndex(CAMPO_NOMBRE));
@@ -97,7 +97,6 @@ public class UsuarioRepositorioDBImpl implements UsuarioRepositorio {
             usuario.setEmail(email);
             usuario.setContrasena(contrasena);
             usuario.setTipoUsuario(Usuario.TipoUsuario.valueOf(tipoUsuario));
-
 
         cr.close();
         db.close();

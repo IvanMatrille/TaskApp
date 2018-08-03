@@ -8,8 +8,8 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="106dp"
-        android:layout_height="wrap_content"
+        android:layout_width="89dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -20,10 +20,10 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="89dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/holo_green_light"
         android:text="Proceso"
@@ -32,10 +32,10 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="89dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/white"
         android:text="Busqueda"
@@ -45,7 +45,7 @@
     <ListView
         android:id="@+id/lvTareaTecnico"
         android:layout_width="350dp"
-        android:layout_height="356dp"
+        android:layout_height="420dp"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="12dp"

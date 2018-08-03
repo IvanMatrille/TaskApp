@@ -11,9 +11,15 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 
 import ado.edu.itla.taskapp.R;
+import ado.edu.itla.taskapp.entidad.Categoria;
 import ado.edu.itla.taskapp.entidad.Tarea;
+import ado.edu.itla.taskapp.entidad.Usuario;
+import ado.edu.itla.taskapp.repositorio.CategoriaRepositorio;
 import ado.edu.itla.taskapp.repositorio.TareaRepositorio;
+import ado.edu.itla.taskapp.repositorio.UsuarioRepositorio;
+import ado.edu.itla.taskapp.repositorio.db.CategoriaRepositorioDbImp;
 import ado.edu.itla.taskapp.repositorio.db.TareaRepositorioDBImpl;
+import ado.edu.itla.taskapp.repositorio.db.UsuarioRepositorioDBImpl;
 
 public class DetalleTareaTecnico extends AppCompatActivity {
 
@@ -25,11 +31,16 @@ public class DetalleTareaTecnico extends AppCompatActivity {
     TextView txtCreador;
     Button btnListo;
     int idTarea;
+    UsuarioRepositorio usuarioR;
+    CategoriaRepositorio categoriaR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario_tecnico);
+
+        usuarioR = new UsuarioRepositorioDBImpl(this);
+        categoriaR = new CategoriaRepositorioDbImp(this);
 
         txtCategoria = (TextView)findViewById(R.id.txtCategoriaUT);
         txtCreador = (TextView)findViewById(R.id.txtCreadorUT);
@@ -42,10 +53,12 @@ public class DetalleTareaTecnico extends AppCompatActivity {
         if(bundle != null && bundle.containsKey("tarea")){
             idTarea = bundle.getInt("tarea");
             tarea = tareaR.buscar(idTarea);
+            Usuario usuario = usuarioR.buscar(tarea.getUsuarioCreador());
+            Categoria categoria = categoriaR.buscar(tarea.getCategoria());
 
             txtFecha.setText(new SimpleDateFormat("dd/mm/yyyy").format(tarea.getFecha()));
-            txtCreador.setText(Integer.toString(tarea.getUsuarioCreador()));
-            txtCategoria.setText(Integer.toString(tarea.getCategoria()));
+            txtCreador.setText(usuario.getNombre());
+            txtCategoria.setText(categoria.getNombre());
             txtDescripcion.setText(tarea.getDescripcion());
         }
 

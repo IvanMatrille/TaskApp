@@ -13,6 +13,7 @@ import java.util.List;
 import ado.edu.itla.taskapp.R;
 import ado.edu.itla.taskapp.entidad.Categoria;
 import ado.edu.itla.taskapp.entidad.Tarea;
+import ado.edu.itla.taskapp.entidad.Usuario;
 import ado.edu.itla.taskapp.repositorio.db.CategoriaRepositorioDbImp;
 import ado.edu.itla.taskapp.repositorio.db.UsuarioRepositorioDBImpl;
 
@@ -22,7 +23,7 @@ public class TareaListAdaptarNormal extends BaseAdapter {
     private List<Tarea> tareas;
     private List<Categoria> categorias;
     private UsuarioRepositorioDBImpl usuarioRDB;
-        private CategoriaRepositorioDbImp categoriaRDB;
+    private CategoriaRepositorioDbImp categoriaRDB;
 
     public TareaListAdaptarNormal(Activity activity, List<Tarea> tareas){
         this.tareas = tareas;
@@ -55,21 +56,19 @@ public class TareaListAdaptarNormal extends BaseAdapter {
         }
 
         TextView txtDescripcion = convertView.findViewById(R.id.txtDescripcionET);
-        TextView txtUsuarioCreador = convertView.findViewById(R.id.txtCreador);
+        TextView txtAsignado = convertView.findViewById(R.id.txtAsignado);
         TextView txtCategoria = convertView.findViewById(R.id.txtCategoriaLv);
         TextView txtFecha = convertView.findViewById(R.id.txtFechaET);
-        TextView txtEstado = convertView.findViewById(R.id.txtEstadoET);
         TextView txtEstadoTarea = convertView.findViewById(R.id.txtEstadoTarea);
 
-      //  Tarea tarea = tareas.get(position);
         Tarea tarea = tareas.get(position);
 
-        String usuarioCreador = String.valueOf(tarea.getUsuarioAsignado());
-        String categoriaid = String.valueOf(tarea.getCategoria());
+        Usuario usuarioCreador = usuarioRDB.buscar(tarea.getUsuarioAsignado());
+        Categoria categoria = categoriaRDB.buscar(tarea.getCategoria());
 
         txtDescripcion.setText(tarea.getDescripcion());
-        txtUsuarioCreador.setText(usuarioCreador);
-        txtCategoria.setText(categoriaid);
+        txtAsignado.setText(usuarioCreador.getNombre());
+        txtCategoria.setText(categoria.getNombre());
         txtFecha.setText(new SimpleDateFormat("dd-m-yyyy").format(tarea.getFecha()));
         txtEstadoTarea.setText(tarea.getEstado().toString());
 

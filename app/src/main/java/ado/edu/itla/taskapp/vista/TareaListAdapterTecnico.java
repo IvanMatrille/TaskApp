@@ -11,15 +11,23 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import ado.edu.itla.taskapp.R;
+import ado.edu.itla.taskapp.entidad.Categoria;
 import ado.edu.itla.taskapp.entidad.Tarea;
+import ado.edu.itla.taskapp.entidad.Usuario;
+import ado.edu.itla.taskapp.repositorio.db.CategoriaRepositorioDbImp;
+import ado.edu.itla.taskapp.repositorio.db.UsuarioRepositorioDBImpl;
 
 public class TareaListAdapterTecnico extends BaseAdapter {
     Context context;
     List<Tarea> tareas;
+    private UsuarioRepositorioDBImpl usuarioRDB;
+    private CategoriaRepositorioDbImp categoriaRDB;
 
     public TareaListAdapterTecnico(Context context, List<Tarea> tareas){
         this.context = context;
         this.tareas = tareas;
+        usuarioRDB = new UsuarioRepositorioDBImpl(context);
+        categoriaRDB = new CategoriaRepositorioDbImp(context);
     }
 
     @Override
@@ -47,16 +55,16 @@ public class TareaListAdapterTecnico extends BaseAdapter {
         TextView txtDescripcion = convertView.findViewById(R.id.txtDescripcionET);
         TextView txtCategoria = convertView.findViewById(R.id.txtCategoriaLv);
         TextView txtFecha = convertView.findViewById(R.id.txtFechaET);
-        TextView txtCreador = convertView.findViewById(R.id.txtCreador);
+        TextView txtCreador = convertView.findViewById(R.id.txtAsignado);
         TextView txtEstado = convertView.findViewById(R.id.txtEstadoTarea);
 
         Tarea tarea = tareas.get(position);
 
-        String categoria = String.valueOf(tarea.getCategoria());
-        String creador = String.valueOf(tarea.getUsuarioCreador());
+        Categoria categoria = categoriaRDB.buscar(tarea.getCategoria());
+        Usuario usuario = usuarioRDB.buscar(tarea.getUsuarioCreador());
 
-        txtCategoria.setText(categoria);
-        txtCreador.setText(creador);
+        txtCategoria.setText(categoria.getNombre());
+        txtCreador.setText(usuario.getNombre());
         txtDescripcion.setText(tarea.getDescripcion());
         txtEstado.setText(tarea.getEstado().toString());
         txtFecha.setText(new SimpleDateFormat("dd-mm-yyyy").format(tarea.getFecha()));

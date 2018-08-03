@@ -144,4 +144,16 @@
         android:text="Fecha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="37dp"
+        android:layout_height="38dp"
+        android:layout_marginLeft="176dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="52dp"
+        app:layout_constraintStart_toEndOf="@+id/button11"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescripcionET"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
 </android.support.constraint.ConstraintLayout>
